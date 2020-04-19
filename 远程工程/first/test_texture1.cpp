@@ -47,7 +47,7 @@ int test_texture11()
 
     // build and compile our shader zprogram
     // ------------------------------------
-    Shader ourShader("1.1shader.vs", "1.1shader.fs");
+    Shader ourShader("/Users/admin/Desktop/code/OpenGL/远程工程/1.1shader.vs", "/Users/admin/Desktop/code/OpenGL/远程工程/1.1shader.fs");
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
