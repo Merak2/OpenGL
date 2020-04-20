@@ -10,5 +10,5 @@
 #define Textures2_hpp
 
 #include <stdio.h>
-
+int Textures2();
 #endif /* Textures2_hpp */

@@ -9,6 +9,6 @@
 #ifndef Hello_Shader2_hpp
 #define Hello_Shader2_hpp
 
-#include <stdio.h>
+int Hello_Shader2();
 
 #endif /* Hello_Shader2_hpp */

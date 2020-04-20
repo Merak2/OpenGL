@@ -9,6 +9,6 @@
 #ifndef Hello_Shaders_hpp
 #define Hello_Shaders_hpp
 
-#include <stdio.h>
+int Hello_Shaders();
 
 #endif /* Hello_Shaders_hpp */

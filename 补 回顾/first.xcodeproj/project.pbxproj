@@ -17,6 +17,10 @@
 		84F7F4EE244D4C800007EC48 /* Hello Triangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4EC244D4C800007EC48 /* Hello Triangle.cpp */; };
 		84F7F4F4244D554B0007EC48 /* Some Function.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4F2244D554B0007EC48 /* Some Function.cpp */; };
 		84F7F4F7244D7ED50007EC48 /* Hello Triangle2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4F5244D7ED50007EC48 /* Hello Triangle2.cpp */; };
+		84F7F4FA244D864E0007EC48 /* Hello Shaders.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4F8244D864E0007EC48 /* Hello Shaders.cpp */; };
+		84F7F4FD244D88C00007EC48 /* Hello Shader2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4FB244D88C00007EC48 /* Hello Shader2.cpp */; };
+		84F7F500244D8E240007EC48 /* Textures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F4FE244D8E240007EC48 /* Textures.cpp */; };
+		84F7F505244D9AAF0007EC48 /* Textures2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84F7F503244D9AAF0007EC48 /* Textures2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,8 +49,6 @@
 		8423E6D62449AB49006D8FF7 /* shader_s.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shader_s.h; sourceTree = "<group>"; };
 		8423E6D72449AE19006D8FF7 /* container.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = container.jpg; sourceTree = "<group>"; };
 		846AB0D1244D3236002B9BDF /* awesomeface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface.png; sourceTree = "<group>"; };
-		84886685244C312300FA7339 /* 1.1shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 1.1shader.fs; sourceTree = "<group>"; };
-		84886686244C313300FA7339 /* 1.1shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 1.1shader.vs; sourceTree = "<group>"; };
 		8488D4A62445A7EA00B55318 /* first */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = first; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488D4B32445A87200B55318 /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		8488D4B42445A87200B55318 /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
@@ -71,6 +73,18 @@
 		84F7F4F3244D554B0007EC48 /* Some Function.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "Some Function.hpp"; sourceTree = "<group>"; };
 		84F7F4F5244D7ED50007EC48 /* Hello Triangle2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Hello Triangle2.cpp"; sourceTree = "<group>"; };
 		84F7F4F6244D7ED50007EC48 /* Hello Triangle2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "Hello Triangle2.hpp"; sourceTree = "<group>"; };
+		84F7F4F8244D864E0007EC48 /* Hello Shaders.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Hello Shaders.cpp"; sourceTree = "<group>"; };
+		84F7F4F9244D864E0007EC48 /* Hello Shaders.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "Hello Shaders.hpp"; sourceTree = "<group>"; };
+		84F7F4FB244D88C00007EC48 /* Hello Shader2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Hello Shader2.cpp"; sourceTree = "<group>"; };
+		84F7F4FC244D88C00007EC48 /* Hello Shader2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = "Hello Shader2.hpp"; sourceTree = "<group>"; };
+		84F7F4FE244D8E240007EC48 /* Textures.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Textures.cpp; sourceTree = "<group>"; };
+		84F7F4FF244D8E240007EC48 /* Textures.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Textures.hpp; sourceTree = "<group>"; };
+		84F7F501244D98C50007EC48 /* 1.textureShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 1.textureShader.fs; sourceTree = "<group>"; };
+		84F7F502244D98D50007EC48 /* 1.textureShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 1.textureShader.vs; sourceTree = "<group>"; };
+		84F7F503244D9AAF0007EC48 /* Textures2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Textures2.cpp; sourceTree = "<group>"; };
+		84F7F504244D9AAF0007EC48 /* Textures2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Textures2.hpp; sourceTree = "<group>"; };
+		84F7F506244D9FB40007EC48 /* 2.textureShader.vs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2.textureShader.vs; sourceTree = "<group>"; };
+		84F7F507244D9FBD0007EC48 /* 2.textureShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = 2.textureShader.fs; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +112,18 @@
 		8488D49D2445A7EA00B55318 = {
 			isa = PBXGroup;
 			children = (
+				84F7F507244D9FBD0007EC48 /* 2.textureShader.fs */,
+				84F7F506244D9FB40007EC48 /* 2.textureShader.vs */,
+				84F7F503244D9AAF0007EC48 /* Textures2.cpp */,
+				84F7F504244D9AAF0007EC48 /* Textures2.hpp */,
+				84F7F502244D98D50007EC48 /* 1.textureShader.vs */,
+				84F7F501244D98C50007EC48 /* 1.textureShader.fs */,
+				84F7F4FE244D8E240007EC48 /* Textures.cpp */,
+				84F7F4FF244D8E240007EC48 /* Textures.hpp */,
+				84F7F4FB244D88C00007EC48 /* Hello Shader2.cpp */,
+				84F7F4FC244D88C00007EC48 /* Hello Shader2.hpp */,
+				84F7F4F8244D864E0007EC48 /* Hello Shaders.cpp */,
+				84F7F4F9244D864E0007EC48 /* Hello Shaders.hpp */,
 				84F7F4F5244D7ED50007EC48 /* Hello Triangle2.cpp */,
 				84F7F4F6244D7ED50007EC48 /* Hello Triangle2.hpp */,
 				84F7F4F2244D554B0007EC48 /* Some Function.cpp */,
@@ -107,8 +133,6 @@
 				84F7F4E9244D43390007EC48 /* Hello Window.cpp */,
 				84F7F4EA244D43390007EC48 /* Hello Window.hpp */,
 				846AB0D1244D3236002B9BDF /* awesomeface.png */,
-				84886685244C312300FA7339 /* 1.1shader.fs */,
-				84886686244C313300FA7339 /* 1.1shader.vs */,
 				8423E6D72449AE19006D8FF7 /* container.jpg */,
 				8423E6D62449AB49006D8FF7 /* shader_s.h */,
 				8423E6D5244996F9006D8FF7 /* stb_image.h */,
@@ -305,12 +329,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F7F505244D9AAF0007EC48 /* Textures2.cpp in Sources */,
 				84F7F4EB244D43390007EC48 /* Hello Window.cpp in Sources */,
 				84F7F4EE244D4C800007EC48 /* Hello Triangle.cpp in Sources */,
 				84F7F4F4244D554B0007EC48 /* Some Function.cpp in Sources */,
 				8488D4C22445A98F00B55318 /* glad.c in Sources */,
+				84F7F4FA244D864E0007EC48 /* Hello Shaders.cpp in Sources */,
 				84F7F4F7244D7ED50007EC48 /* Hello Triangle2.cpp in Sources */,
 				84F7F4E8244D42860007EC48 /* main.cpp in Sources */,
+				84F7F500244D8E240007EC48 /* Textures.cpp in Sources */,
+				84F7F4FD244D88C00007EC48 /* Hello Shader2.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

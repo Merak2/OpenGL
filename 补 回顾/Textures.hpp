@@ -12,3 +12,4 @@
 #include <stdio.h>
 
 #endif /* Textures_hpp */
+int Textures();
