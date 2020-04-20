@@ -12,7 +12,7 @@
 #include "stb_image.h"
 #include "shader_s.h"
 #include "Hello Window.hpp"
-const char *vertexShaderSource={
+static const char *vertexShaderSource={
    "#version 330 core\n"
     "layout (location = 0) in vec3 aPos;\n"
     "void main()\n"
@@ -21,7 +21,7 @@ const char *vertexShaderSource={
     "}"
 };
 
-const char *fragmentShaderSource = "#version 330 core\n"
+static const char *fragmentShaderSource = "#version 330 core\n"
     "out vec4 FragColor;\n"
     "void main()\n"
     "{\n"
@@ -32,7 +32,7 @@ const char *fragmentShaderSource = "#version 330 core\n"
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
-float vertices[] = {
+static float vertices[] = {
     -0.5f, -0.5f, 0.0f,
      0.5f, -0.5f, 0.0f,
      0.0f,  0.5f, 0.0f
