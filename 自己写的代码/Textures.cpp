@@ -5,6 +5,7 @@
 //  Created by Admin on 2020/4/20.
 //  Copyright © 2020 Admin. All rights reserved.
 //
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "Textures.hpp"
 #include "glad.h"
@@ -21,7 +22,7 @@ int Textures()
 
     float vertices[] = {
     //     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,   // 右上
          0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,   // 右下
         -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,   // 左下
         -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f    // 左上
@@ -57,7 +58,7 @@ int Textures()
         return -1;
     }
     
-    Shader ourShader("/Users/admin/Desktop/code/OpenGL/补 回顾/1.textureShader.vs","/Users/admin/Desktop/code/OpenGL/补 回顾/1.textureShader.fs");
+    Shader ourShader("/Users/admin/Desktop/code/OpenGL/自己写的代码/1.textureShader.vs","/Users/admin/Desktop/code/OpenGL/自己写的代码/1.textureShader.fs");
     
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     
@@ -96,7 +97,7 @@ int Textures()
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // 加载并生成纹理
     int width, height, nrChannels;
-    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/补 回顾/container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/container.jpg", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);

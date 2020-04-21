@@ -54,9 +54,12 @@ int Test_Star()
         
     };
     
+    float size=1;
+    std::cout<<"输入比例（0～20）："<<std::endl;
+    std::cin>>size;
     
     for(int i=0;i<30;++i)
-        vertices[i]=vertices[i]*10;
+        vertices[i]=vertices[i]*size;
 
 
     
