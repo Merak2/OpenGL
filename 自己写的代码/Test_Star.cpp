@@ -40,9 +40,9 @@ int Test_Star()
         -0.04f,0.02f,0.0f,//J 4
         -0.01f,0.02f,0.0f,//K 5
         0.01f,0.02f,0.0f,//L 6
-        0.02f,0.0f,0.0f,//M 7
-        0.0f,-0.0155f,0.0f,//N 8
-        -0.02f,0.0f,0.0f,//O 9
+        0.015f,0.0f,0.0f,//M 7
+        0.0f,-0.0135f,0.0f,//N 8
+        -0.015f,0.0f,0.0f,//O 9
     };
 
     unsigned int indices[] = { // 注意索引从0开始!
@@ -53,7 +53,10 @@ int Test_Star()
         4,6,8,
         
     };
-
+    
+    
+    for(int i=0;i<30;++i)
+        vertices[i]=vertices[i]*10;
 
 
     
@@ -89,7 +92,7 @@ int Test_Star()
     
 
     
-    float step=0.01;
+    float step=0.005;
     bool flog=true;
     while(!glfwWindowShouldClose(window))
     {
