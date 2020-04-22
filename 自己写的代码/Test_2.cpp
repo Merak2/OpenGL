@@ -15,7 +15,8 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-int flog=-1,dis=2;
+const float pi=3.1415926535;
+float step=0.04,x=0,flog=1;
 
 int Test_2()
 {
@@ -125,26 +126,21 @@ int Test_2()
         // -----
         processInput(window);
 //        ---------------------------------
+        
+        x+=step;
+        if(abs(x-pi)<0.1 || abs(x+pi)<0.1)
+            step=step*-1;
+        
 
-            
-        
-            float x=glfwGetTime();
-        
-            if(x>(dis+2))
-            {
-                dis=x;
-                flog=flog*-1;
-            }
-        
-            
+        vertices[0]=cos(x)/5; vertices[1]=sin(x)/5; vertices[2]=0;
+        vertices[8]=sin(x)/5; vertices[9]=-cos(x)/5; vertices[10]=0;
+        vertices[16]=-cos(x)/5; vertices[17]=-sin(x)/5; vertices[18]=0;
+        vertices[24]=-sin(x)/5; vertices[25]=cos(x)/5; vertices[26]=0;
 //               旋转
-            vertices[0]=cos(x)/5*flog; vertices[1]=sin(x)/5; vertices[2]=0;
-            vertices[8]=sin(x)/5*flog; vertices[9]=-cos(x)/5; vertices[10]=0;
-            vertices[16]=-cos(x)/5*flog; vertices[17]=-sin(x)/5; vertices[18]=0;
-            vertices[24]=-sin(x)/5*flog; vertices[25]=cos(x)/5; vertices[26]=0;
-        
-        
-        
+//        vertices[0]=cos(x)/5*flog; vertices[1]=sin(x)/5; vertices[2]=0;
+//        vertices[8]=sin(x)/5*flog; vertices[9]=-cos(x)/5; vertices[10]=0;
+//        vertices[16]=-cos(x)/5*flog; vertices[17]=-sin(x)/5; vertices[18]=0;
+//        vertices[24]=-sin(x)/5*flog; vertices[25]=cos(x)/5; vertices[26]=0;
         
         
         
