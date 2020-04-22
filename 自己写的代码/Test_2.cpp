@@ -6,6 +6,8 @@
 #include "Test_2.hpp"
 #include "Some Function.hpp"
 #include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -13,6 +15,7 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
+int flog=-1,dis=2;
 
 int Test_2()
 {
@@ -72,21 +75,14 @@ int Test_2()
 
     glBindVertexArray(VAO);
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+   
+    
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // position attribute
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    // color attribute
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
-    // texture coord attribute
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
-    glEnableVertexAttribArray(2);
+   
 
 
     // load and create a texture
@@ -128,6 +124,50 @@ int Test_2()
         // input
         // -----
         processInput(window);
+//        ---------------------------------
+
+            
+        
+            float x=glfwGetTime();
+        
+            if(x>(dis+2))
+            {
+                dis=x;
+                flog=flog*-1;
+            }
+        
+            
+//               旋转
+            vertices[0]=cos(x)/5*flog; vertices[1]=sin(x)/5; vertices[2]=0;
+            vertices[8]=sin(x)/5*flog; vertices[9]=-cos(x)/5; vertices[10]=0;
+            vertices[16]=-cos(x)/5*flog; vertices[17]=-sin(x)/5; vertices[18]=0;
+            vertices[24]=-sin(x)/5*flog; vertices[25]=cos(x)/5; vertices[26]=0;
+        
+        
+        
+        
+        
+        
+//        向右 旋转
+//        vertices[0]=sin(x); vertices[1]=cos(x); vertices[2]=0;
+//        vertices[8]=cos(x); vertices[9]=-sin(x); vertices[10]=0;
+//        vertices[16]=-sin(x); vertices[17]=-cos(x); vertices[18]=0;
+//        vertices[24]=-cos(x); vertices[25]=sin(x); vertices[26]=0;
+        
+        
+        
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+        glEnableVertexAttribArray(0);
+            // color attribute
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+        glEnableVertexAttribArray(1);
+            // texture coord attribute
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+        glEnableVertexAttribArray(2);
+        
+        
 
         // render
         // ------
@@ -146,6 +186,7 @@ int Test_2()
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
+//        getchar();
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
