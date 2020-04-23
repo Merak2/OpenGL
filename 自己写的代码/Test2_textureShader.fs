@@ -10,7 +10,8 @@ void main()
 {
 //    FragColor = mix(texture(ourTexture, TexCoord),vec4(0.0f, 0.1058f, 0.545f, -1.0f),1);
 //    FragColor = texture(ourTexture, TexCoord)*vec4(0.0f, 0.1058f, 0.445f, 1.0f);
-    
-    FragColor = texture(ourTexture, TexCoord);
+    lowp vec4 col = texture(ourTexture, TexCoord);
+    FragColor = vec4(col.r*0.299+col.g*0.587+col.b*0.114,col.r*0.299+col.g*0.587+col.b*0.114,col.r*0.299+col.g*0.587+col.b*0.114,1.0f);
+//    FrageColor = vec4(1.0f,1.0f,1.0f,1.0f);
     
 }

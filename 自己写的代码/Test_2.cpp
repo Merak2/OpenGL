@@ -19,6 +19,11 @@ const float pi = 3.1415926535;
 int tot=0,flog=-1;
 
 float vertices1[] = {
+    
+//    0.5f, 0.7f, 0.0f,   // up
+//    0.5f, -0.3f, 0.0f,  // down
+//    -0.3f, 0.5f, 0.0f, // left
+//    0.7f, 0.5f, 0.0f   // right
     0.0f, 0.2f, 0.0f,   // up
     0.0f, -0.2f, 0.0f,  // down
     -0.2f, 0.0f, 0.0f, // left
@@ -97,7 +102,7 @@ int Test_2()
     float vertices[] = {
         // positions          // colors           // texture coords  //cosx sinx
         0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
-         0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
+         0.1f, -0.1f, 0.0f,   0.0f, 0.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
         -0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
         -0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
 
@@ -138,10 +143,11 @@ int Test_2()
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/awesomeface_dark.png", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/awesomeface.png", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        //可选的值有GL_ALPHA,GL_RGB,GL_RGBA,GL_LUMINANCE, GL_LUMINANCE_ALPHA 等几种。
         glGenerateMipmap(GL_TEXTURE_2D);
     }
     else
@@ -206,16 +212,20 @@ int Test_2()
         // bind Texture
         glBindTexture(GL_TEXTURE_2D, texture);
 
+        
+        ourShader1.use();
+        glBindVertexArray(VAO1);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        
+        
         // render container
         ourShader.use();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
         
-        ourShader1.use();
-        glBindVertexArray(VAO1);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        glBindVertexArray(0);
+        
         
         
         glfwSwapBuffers(window);

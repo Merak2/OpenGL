@@ -123,8 +123,8 @@
 		8488D49D2445A7EA00B55318 = {
 			isa = PBXGroup;
 			children = (
-				84772648244F16D4003C5559 /* Test2_textureShader.fs */,
 				84772647244F16CB003C5559 /* Test2_textureShader.vs */,
+				84772648244F16D4003C5559 /* Test2_textureShader.fs */,
 				84772644244EEBB3003C5559 /* Test_2.cpp */,
 				84808F7E2451830900ACC0DA /* 3.Test2_Shader.fs */,
 				84808F7D2451830900ACC0DA /* 3.Test2_Shader.vs */,
