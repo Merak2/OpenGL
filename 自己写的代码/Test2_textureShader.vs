@@ -14,7 +14,7 @@ void main()
 //    aPos.x = (aPos.x * cossin.x) - (aPos.y * cossin.y);
 //    aPos.y = (aPos.x * cossin.y) + (aPos.y * cossin.x);
     
-    
+    if(cossin.x>-4)
     gl_Position = vec4(((aPos.x * cossin.x) - (aPos.y * cossin.y)), ((aPos.x * cossin.y) + (aPos.y * cossin.x)),aPos.z,1.0);
     ourColor = aColor;
     TexCoord = aTexCoord;

@@ -1,4 +1,3 @@
-
 #include "glad.h"
 #include "glfw3.h"
 #include "stb_image.h"
@@ -19,6 +18,17 @@ float step=1,angle=-360,radian,cosx,sinx,acc=1.2;
 const float pi = 3.1415926535;
 int tot=0,flog=-1;
 
+float vertices1[] = {
+    0.0f, 0.2f, 0.0f,   // up
+    0.0f, -0.2f, 0.0f,  // down
+    -0.2f, 0.0f, 0.0f, // left
+    0.2f, 0.0f, 0.0f   // right
+};
+
+unsigned int indices1[] = { // 注意索引从0开始!
+    0, 1, 2, // 第一个三角形
+    0, 1, 3  // 第二个三角形
+};
 
 int Test_2()
 {
@@ -56,37 +66,62 @@ int Test_2()
     // build and compile our shader zprogram
     // ------------------------------------
     Shader ourShader("/Users/admin/Desktop/code/OpenGL/自己写的代码/Test2_textureShader.vs", "/Users/admin/Desktop/code/OpenGL/自己写的代码/Test2_textureShader.fs");
+    Shader ourShader1("/Users/admin/Desktop/code/OpenGL/自己写的代码/3.Test2_Shader.vs","/Users/admin/Desktop/code/OpenGL/自己写的代码/3.Test2_Shader.fs");
+    ourShader.use();
+    ourShader1.use();
+    unsigned int VAO1;
+    //顶点数组
+    glGenVertexArrays(1, &VAO1);
+    glBindVertexArray(VAO1);
+    //绑定顶点数组缓存
+    unsigned int VBO1;
+    glGenBuffers(1, &VBO1);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO1);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
 
-    // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
+    //绑定索引缓存
+    unsigned int EBO1;
+    glGenBuffers(1, &EBO1);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO1);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices1), indices1, GL_STATIC_DRAW);
+
+    // 位置属性
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+      
+       
+    
+
     
     float vertices[] = {
         // positions          // colors           // texture coords  //cosx sinx
-        0.1f,  0.1f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
+        0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
          0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
-        -0.1f, -0.1f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
-        -0.1f,  0.1f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
+        -0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
+        -0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
+
     };
+
     unsigned int indices[] = {
         0, 1, 3, // first triangle
         1, 2, 3  // second triangle
     };
+
     unsigned int VBO, VAO, EBO;
+
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);
-
     glBindVertexArray(VAO);
 
-   
     
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    
 
-    // position attribute
-   
-
+    
 
     // load and create a texture
     // -------------------------
@@ -94,20 +129,16 @@ int Test_2()
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture); // all upcoming GL_TEXTURE_2D operations now have effect on this texture object
     // set the texture wrapping parameters
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);    // set texture wrapping to GL_REPEAT (default wrapping method)
-//    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    float borderColor[] = { 0.9f, 0.0f, 0.0f, 1.0f };
-    glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);    // set texture wrapping to GL_REPEAT (default wrapping method)
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
     // set texture filtering parameters
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
-    // The FileSystem::getPath(...) is part of the GitHub repository so we can find files on any IDE/platform; replace it with your own image path.
-    
     stbi_set_flip_vertically_on_load(true);
-    
-    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/awesomeface.png", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/awesomeface_dark.png", &width, &height, &nrChannels, 0);
     if (data)
     {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
@@ -120,14 +151,13 @@ int Test_2()
     stbi_image_free(data);
 
 
-    // render loop
-    // -----------
+    
+    
     while (!glfwWindowShouldClose(window))
     {
-        // input
-        // -----
+
         processInput(window);
-//        ---------------------------------
+
         acc+=0.09;
         angle=angle+(step*acc);
         if(angle<-370)
@@ -145,9 +175,7 @@ int Test_2()
         radian = angle * (pi/180.0);
         
         
-            
-//
-        cosx = cos(radian) ;//改为负可以向右转动
+        cosx = cos(radian) ;
         sinx = sin(radian);
         
         vertices[8] = cosx; vertices[9] = sinx;
@@ -167,12 +195,11 @@ int Test_2()
             // texture coord attribute
         glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
-        
+            //cos sin
         glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(8 * sizeof(float)));
         glEnableVertexAttribArray(3);
 
-        // render
-        // ------
+        
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
@@ -183,12 +210,17 @@ int Test_2()
         ourShader.use();
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-        // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
-        // -------------------------------------------------------------------------------
+        glBindVertexArray(0);
+        
+        ourShader1.use();
+        glBindVertexArray(VAO1);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        glBindVertexArray(0);
+        
+        
         glfwSwapBuffers(window);
         glfwPollEvents();
-//        getchar();
+
     }
 
     // optional: de-allocate all resources once they've outlived their purpose:
@@ -196,12 +228,10 @@ int Test_2()
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     glDeleteBuffers(1, &EBO);
+    glDeleteVertexArrays(1, &VAO1);
+    glDeleteBuffers(1, &VBO1);
+    glDeleteBuffers(1, &EBO1);
 
-    // glfw: terminate, clearing all previously allocated GLFW resources.
-    // ------------------------------------------------------------------
     glfwTerminate();
     return 0;
 }
-
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
