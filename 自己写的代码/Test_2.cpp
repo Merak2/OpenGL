@@ -15,7 +15,7 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-float t,angle,radian,cosx,sinx;
+float step=1,angle=-360,radian,cosx,sinx,acc=1.2;
 const float pi = 3.1415926535;
 int tot=0,flog=-1;
 
@@ -62,10 +62,10 @@ int Test_2()
     
     float vertices[] = {
         // positions          // colors           // texture coords  //cosx sinx
-        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
+        0.1f,  0.1f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
+         0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
+        -0.1f, -0.1f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
+        -0.1f,  0.1f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
     };
     unsigned int indices[] = {
         0, 1, 3, // first triangle
@@ -128,10 +128,20 @@ int Test_2()
         // -----
         processInput(window);
 //        ---------------------------------
+        acc+=0.09;
+        angle=angle+(step*acc);
+        if(angle<-370)
+        {
+            step=1;
+            acc=1.1;
+        }
+        if(angle>370)
+        {
+            step=-1;
+            acc=1.1;
+        }
+//        cout<<"angle"<<angle<<"   "<<"acc"<<acc<<"   "<<step<<endl;
         
-        t = glfwGetTime()*30;
-        
-        angle = int(t)%360;
         radian = angle * (pi/180.0);
         
         
