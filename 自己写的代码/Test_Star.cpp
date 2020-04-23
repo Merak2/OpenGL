@@ -10,7 +10,8 @@
 #include "glfw3.h"
 #include "stb_image.h"
 #include "shader_s.h"
-
+//https://zhidao.baidu.com/question/489102691.html?oldq=1
+//https://zhidao.baidu.com/question/1578193834272676580.html
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
 
@@ -32,30 +33,49 @@ int Test_Star()
         "   FragColor = vec4(0.9f, 0.0f, 0.0f, 1.0f);\n"
         "}\n\0";
     
+    /*
+     *
+     A(0,10)
+     B(－9.5106,3.0902)
+     C(-5.8779,-8.0902)
+     D(5.8779,-8.0902)
+     E(9.5106,3.0902)
+     F(0,-3.8197)
+     G(3.6328,-1.1804)
+     H(2.2452,3.0902)
+     I(-2.2452,3.0902)
+     J(-3.6328,-1.1804)
+
+     */
+    
     float vertices[] = {
-        0.0,0.06,0.0f, //F 0
-        0.04f,0.02f,0.0f,//G 1
-        0.03f,-0.04f,0.0f,//H 2
-        -0.03f,-0.04f,0.0f,//I 3
-        -0.04f,0.02f,0.0f,//J 4
-        -0.01f,0.02f,0.0f,//K 5
-        0.01f,0.02f,0.0f,//L 6
-        0.015f,0.0f,0.0f,//M 7
-        0.0f,-0.0135f,0.0f,//N 8
-        -0.015f,0.0f,0.0f,//O 9
+        0, 10, 0, //A 0 v_up
+        -9.5106*0.75, 3.0902, 0, //B 1 v_left
+        -5.8779*0.75, -8.0902, 0, //C 2 v_down_left
+        5.8779*0.75, -8.0902, 0, //D 3 v_down_right
+        9.5106*0.75, 3.0902, 0,//E 4 v_right
+        
+        0, -3.8197, 0, //F 5 C*D
+        3.6328*0.75, -1.1804, 0, //G 6 D*E
+        2.2452*0.75, 3.0902, 0,//H 7 A*E
+        -2.2452*0.75, 3.0902, 0,//I 8 A*B
+        -3.6328*0.75, -1.1804, 0,//J 9 B*C
     };
+    for(int i=0; i<30; ++i)
+    {
+        vertices[i] = vertices[i] / 50.0;
+    }
 
     unsigned int indices[] = { // 注意索引从0开始!
-        0,9,7,
-        1,5,8,
-        2,6,9,
-        3,5,7,
-        4,6,8,
-        
+        0,9,6,
+        4,8,5,
+        3,7,9,
+        2,6,8,
+        1,5,7,
     };
     
     float size=1;
-    std::cout<<"输入比例（0～20）："<<std::endl;
+    std::cout<<"输入比例："<<std::endl;
     std::cin>>size;
     
     for(int i=0;i<30;++i)
@@ -138,9 +158,6 @@ int Test_Star()
         {
             glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-        }else
-        {
-            std::cout<<"yes"<<std::endl;
         }
         
      // ------------------------------------

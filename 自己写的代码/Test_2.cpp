@@ -4,7 +4,6 @@
 #include "shader_s.h"
 #include "Test_2.hpp"
 #include "Some Function.hpp"
-#include <iostream>
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -14,21 +13,15 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-float step=1,angle=-360,radian,cosx,sinx,acc=1.2;
-const float pi = 3.1415926535;
-int tot=0,flog=-1;
+
 
 float vertices1[] = {
-    
-//    0.5f, 0.7f, 0.0f,   // up
-//    0.5f, -0.3f, 0.0f,  // down
-//    -0.3f, 0.5f, 0.0f, // left
-//    0.7f, 0.5f, 0.0f   // right
     0.0f, 0.2f, 0.0f,   // up
     0.0f, -0.2f, 0.0f,  // down
-    -0.2f, 0.0f, 0.0f, // left
-    0.2f, 0.0f, 0.0f   // right
+    -0.15f, 0.0f, 0.0f, // left
+    0.15f, 0.0f, 0.0f   // right
 };
+//把vertices1 的x 由0.2改为0.015是通过比例计算出来的在 800*600的窗口上显示的是正方形
 
 unsigned int indices1[] = { // 注意索引从0开始!
     0, 1, 2, // 第一个三角形
@@ -100,12 +93,12 @@ int Test_2()
 
     
     float vertices[] = {
-        // positions          // colors           // texture coords  //cosx sinx
-        0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
-         0.1f, -0.1f, 0.0f,   0.0f, 0.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
-        -0.1f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
-        -0.1f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
-
+ // positions          // colors           // texture coords  //time
+        0.075f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,   0.0f,// top right
+         0.075f, -0.1f, 0.0f,   0.0f, 0.0f, 0.0f,   0.0f, 0.0f,  0.0f, // bottom right
+        -0.075f, -0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,  0.0f, // bottom left
+        -0.075f,  0.1f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,  0.0f, // top left
+//把positions 的x 改为0.075是通过比例计算出来的在 800*600的窗口上显示的是正方形
     };
 
     unsigned int indices[] = {
@@ -143,6 +136,7 @@ int Test_2()
     // load image, create texture and generate mipmaps
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true);
+    
     unsigned char *data = stbi_load("/Users/admin/Desktop/code/OpenGL/自己写的代码/awesomeface.png", &width, &height, &nrChannels, 0);
     if (data)
     {
@@ -163,46 +157,26 @@ int Test_2()
     {
 
         processInput(window);
-
-        acc+=0.09;
-        angle=angle+(step*acc);
-        if(angle<-370)
-        {
-            step=1;
-            acc=1.1;
-        }
-        if(angle>370)
-        {
-            step=-1;
-            acc=1.1;
-        }
-//        cout<<"angle"<<angle<<"   "<<"acc"<<acc<<"   "<<step<<endl;
         
-        radian = angle * (pi/180.0);
+        float t=glfwGetTime();
         
+        vertices[8] = t;    vertices[17] = t;    vertices[26] = t;    vertices[35] = t;
         
-        cosx = cos(radian) ;
-        sinx = sin(radian);
-        
-        vertices[8] = cosx; vertices[9] = sinx;
-        vertices[18] = cosx; vertices[19] = sinx;
-        vertices[28] = cosx; vertices[29] = sinx;
-        vertices[38] = cosx; vertices[39] = sinx;
         
         
         
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
             // color attribute
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
             // texture coord attribute
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(6 * sizeof(float)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
             //cos sin
-        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(8 * sizeof(float)));
+        glVertexAttribPointer(3, 1, GL_FLOAT, GL_FALSE, 9 * sizeof(float), (void*)(8 * sizeof(float)));
         glEnableVertexAttribArray(3);
 
         

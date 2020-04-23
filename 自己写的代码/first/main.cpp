@@ -7,8 +7,8 @@
 //#include "Hello Shader2.hpp"
 //#include "Textures.hpp"
 //#include "Textures2.hpp"
-//#include "Test_Star.hpp"
-#include "Test_2.hpp"
+#include "Test_Star.hpp"
+//#include "Test_2.hpp"
 int main()
 {
 //    Hello_Window();
@@ -17,7 +17,7 @@ int main()
 //    Hello_Shader2();
 //    Textures();
 //    Textures2();
-//    Test_Star();
-    Test_2();
+    Test_Star();
+//    Test_2();
     
 }

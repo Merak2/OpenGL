@@ -59,7 +59,6 @@
 		84772648244F16D4003C5559 /* Test2_textureShader.fs */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Test2_textureShader.fs; sourceTree = "<group>"; };
 		84808F7D2451830900ACC0DA /* 3.Test2_Shader.vs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.Test2_Shader.vs; sourceTree = "<group>"; };
 		84808F7E2451830900ACC0DA /* 3.Test2_Shader.fs */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; path = 3.Test2_Shader.fs; sourceTree = "<group>"; };
-		84808F7F245190F000ACC0DA /* awesomeface_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = awesomeface_dark.png; sourceTree = "<group>"; };
 		8488D4A62445A7EA00B55318 /* first */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = first; sourceTree = BUILT_PRODUCTS_DIR; };
 		8488D4B32445A87200B55318 /* glfw3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3.h; sourceTree = "<group>"; };
 		8488D4B42445A87200B55318 /* glfw3native.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glfw3native.h; sourceTree = "<group>"; };
@@ -151,7 +150,6 @@
 				84F7F4ED244D4C800007EC48 /* Hello Triangle.hpp */,
 				84F7F4E9244D43390007EC48 /* Hello Window.cpp */,
 				84F7F4EA244D43390007EC48 /* Hello Window.hpp */,
-				84808F7F245190F000ACC0DA /* awesomeface_dark.png */,
 				846AB0D1244D3236002B9BDF /* awesomeface.png */,
 				8423E6D72449AE19006D8FF7 /* container.jpg */,
 				8423E6D62449AB49006D8FF7 /* shader_s.h */,
