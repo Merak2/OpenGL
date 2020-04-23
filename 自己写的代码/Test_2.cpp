@@ -15,8 +15,10 @@ void processInput(GLFWwindow *window);
 // settings
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
-const float pi=3.1415926535;
-float step=0.04,x=0,flog=1;
+float t,angle,radian,cosx,sinx;
+const float pi = 3.1415926535;
+int tot=0,flog=-1;
+
 
 int Test_2()
 {
@@ -59,11 +61,11 @@ int Test_2()
     // ------------------------------------------------------------------
     
     float vertices[] = {
-        // positions          // colors           // texture coords
-         0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left
+        // positions          // colors           // texture coords  //cosx sinx
+        0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,        0.0f, 0.0f,// top right
+         0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,       0.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,       0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f,       0.0f, 0.0f, // top left
     };
     unsigned int indices[] = {
         0, 1, 3, // first triangle
@@ -127,43 +129,37 @@ int Test_2()
         processInput(window);
 //        ---------------------------------
         
-        x+=step;
-        if(abs(x-pi)<0.1 || abs(x+pi)<0.1)
-            step=step*-1;
+        t = glfwGetTime()*30;
         
-
-        vertices[0]=cos(x)/5; vertices[1]=sin(x)/5; vertices[2]=0;
-        vertices[8]=sin(x)/5; vertices[9]=-cos(x)/5; vertices[10]=0;
-        vertices[16]=-cos(x)/5; vertices[17]=-sin(x)/5; vertices[18]=0;
-        vertices[24]=-sin(x)/5; vertices[25]=cos(x)/5; vertices[26]=0;
-//               旋转
-//        vertices[0]=cos(x)/5*flog; vertices[1]=sin(x)/5; vertices[2]=0;
-//        vertices[8]=sin(x)/5*flog; vertices[9]=-cos(x)/5; vertices[10]=0;
-//        vertices[16]=-cos(x)/5*flog; vertices[17]=-sin(x)/5; vertices[18]=0;
-//        vertices[24]=-sin(x)/5*flog; vertices[25]=cos(x)/5; vertices[26]=0;
+        angle = int(t)%360;
+        radian = angle * (pi/180.0);
         
         
+            
+//
+        cosx = cos(radian) ;//改为负可以向右转动
+        sinx = sin(radian);
         
-//        向右 旋转
-//        vertices[0]=sin(x); vertices[1]=cos(x); vertices[2]=0;
-//        vertices[8]=cos(x); vertices[9]=-sin(x); vertices[10]=0;
-//        vertices[16]=-sin(x); vertices[17]=-cos(x); vertices[18]=0;
-//        vertices[24]=-cos(x); vertices[25]=sin(x); vertices[26]=0;
+        vertices[8] = cosx; vertices[9] = sinx;
+        vertices[18] = cosx; vertices[19] = sinx;
+        vertices[28] = cosx; vertices[29] = sinx;
+        vertices[38] = cosx; vertices[39] = sinx;
         
         
         
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
         glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
+        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)0);
         glEnableVertexAttribArray(0);
             // color attribute
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
+        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(3 * sizeof(float)));
         glEnableVertexAttribArray(1);
             // texture coord attribute
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(6 * sizeof(float)));
         glEnableVertexAttribArray(2);
         
-        
+        glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 10 * sizeof(float), (void*)(8 * sizeof(float)));
+        glEnableVertexAttribArray(3);
 
         // render
         // ------
