@@ -10,10 +10,13 @@
 #include "glfw3.h"
 #include "stb_image.h"
 #include "shader_s.h"
+#include <bits/stdc++.h>
+using namespace std;
 //顶https://zhidao.baidu.com/question/489102691.html?oldq=1
 //https://zhidao.baidu.com/question/1578193834272676580.html
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
+float toRadian(float x);
 
 int Test_Star()
 {
@@ -34,38 +37,39 @@ int Test_Star()
         "}\n\0";
     
     /*
-     **
-     A(0,10)
-     B(－9.5106,3.0902)
-     C(-5.8779,-8.0902)
-     D(5.8779,-8.0902)
-     E(9.5106,3.0902)
-     F(0,-3.8197)
-     G(3.6328,-1.1804)
-     H(2.2452,3.0902)
-     I(-2.2452,3.0902)
-     J(-3.6328,-1.1804)
+     **R=10时
+     A(0,10)           0
+     B(－9.5106,3.0902)3
+     C(-5.8779,-8.0902)6
+     D(5.8779,-8.0902) 9
+     E(9.5106,3.0902) 12
+     F(0,-3.8197)   15
+     G(3.6328,-1.1804) 18
+     H(2.2452,3.0902)21
+     I(-2.2452,3.0902) 24
+     J(-3.6328,-1.1804) 27
 
      */
     
-    float vertices[] = {
-        0, 10, 0, //A 0 v_up
-        -9.5106*0.75, 3.0902, 0, //B 1 v_left
-        -5.8779*0.75, -8.0902, 0, //C 2 v_down_left
-        5.8779*0.75, -8.0902, 0, //D 3 v_down_right
-        9.5106*0.75, 3.0902, 0,//E 4 v_right
-        
-        0, -3.8197, 0, //F 5 C*D
-        3.6328*0.75, -1.1804, 0, //G 6 D*E
-        2.2452*0.75, 3.0902, 0,//H 7 A*E
-        -2.2452*0.75, 3.0902, 0,//I 8 A*B
-        -3.6328*0.75, -1.1804, 0,//J 9 B*C
-    };
-    for(int i=0; i<30; ++i)
-    {
-        vertices[i] = vertices[i] / 50.0;
-    }
-
+    float vertices[30];
+    memset(vertices,0,sizeof(vertices));
+    float x;
+    
+    vertices[1] = 1.0;//A 假设A在Y轴上，且为1，五个顶点构成半径为1的圆
+    x = toRadian(18);
+    vertices[12] = cos(x); vertices[13] = sin(x); //E   ∠EOA=360°/5=72°,OE与X轴的夹角θ=90°－72°=18°
+    vertices[3] = -cos(x); vertices[4] = sin(x);//B     B与E关于Y轴对称
+    x = toRadian(36);                           //K是BIHE的中点,且OA⊥BE,∴OK=E.y，∠AOH=72°/2=36°，
+    vertices[21] = vertices[13] * tan(x); vertices[22] = vertices[13];//H
+    vertices[24] = -vertices[21]; vertices[25] = vertices[22]; //I 与H 关于Y轴对称
+    vertices[16] = -sqrt((vertices[21] * vertices[21])+(vertices[22] * vertices[22]));//F   OH=sqrt(H.x^2+H.y^2),OF=OH
+    x = toRadian(36);
+    vertices[6] = -sin(x); vertices[7] = -cos(x); //C ∠COF=36°
+    vertices[9] = -vertices[6]; vertices[10] = vertices[7];//D 与C关于Y轴对称
+    x = toRadian(-18);
+    vertices[18] = abs(vertices[16]) * cos(x); vertices[19] = abs(vertices[16]) * sin(x); //G  OG=OF=vertices[16],OG与X轴的夹角为－18°
+    vertices[27] = -vertices[18]; vertices[28] = vertices[19];//J 与G关于Y轴对称
+   
     unsigned int indices[] = { // 注意索引从0开始!
         0,9,6,
         4,8,5,
@@ -77,7 +81,7 @@ int Test_Star()
     float size=1;
     std::cout<<"输入比例："<<std::endl;
     std::cin>>size;
-    
+    size/=5;
     for(int i=0;i<30;++i)
         vertices[i]=vertices[i]*size;
 
@@ -208,4 +212,19 @@ int Test_Star()
     glDeleteBuffers(1,&EBO);
     glfwTerminate();
     return 0;
+}
+
+
+float toRadian(float x)
+{
+    while(x>360)
+    {
+        x-=360;
+    }
+    
+    while(x<-360)
+    {
+        x+=360;
+    }
+    return (x * 3.1415926535 / 180.0);
 }
