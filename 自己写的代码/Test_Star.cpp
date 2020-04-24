@@ -69,7 +69,15 @@ int Test_Star()
     x = toRadian(-18);
     vertices[18] = abs(vertices[16]) * cos(x); vertices[19] = abs(vertices[16]) * sin(x); //G  OG=OF=vertices[16],OG与X轴的夹角为－18°
     vertices[27] = -vertices[18]; vertices[28] = vertices[19];//J 与G关于Y轴对称
-   
+    
+    /*
+     *为了保证600*800窗口下，是正方形，x坐标要统一乘0.75
+     
+     */
+    for(int i=0; i<28;i+=3)
+    {
+        vertices[i] = vertices[i] * 0.75;
+    }
     unsigned int indices[] = { // 注意索引从0开始!
         0,9,6,
         4,8,5,
