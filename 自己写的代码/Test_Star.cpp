@@ -10,7 +10,7 @@
 #include "glfw3.h"
 #include "stb_image.h"
 #include "shader_s.h"
-//https://zhidao.baidu.com/question/489102691.html?oldq=1
+//顶点相关https://zhidao.baidu.com/question/489102691.html?oldq=1
 //https://zhidao.baidu.com/question/1578193834272676580.html
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -34,7 +34,7 @@ int Test_Star()
         "}\n\0";
     
     /*
-     
+     **
      A(0,10)
      B(－9.5106,3.0902)
      C(-5.8779,-8.0902)
