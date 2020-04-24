@@ -10,7 +10,7 @@
 #include "glfw3.h"
 #include "stb_image.h"
 #include "shader_s.h"
-//顶点相关https://zhidao.baidu.com/question/489102691.html?oldq=1
+//顶https://zhidao.baidu.com/question/489102691.html?oldq=1
 //https://zhidao.baidu.com/question/1578193834272676580.html
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow *window);
