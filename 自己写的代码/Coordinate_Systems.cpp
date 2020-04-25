@@ -220,7 +220,7 @@ int Coordinate_Systems()
         glUniformMatrix4fv(matLoc, 1, GL_FALSE, value_ptr(projection));
     
         
-        glBindVertexArray(VAO);
+
         
         for(int i = 0; i < 10; ++i)
         {
@@ -244,7 +244,7 @@ int Coordinate_Systems()
 
 
         // render box
-//        glBindVertexArray(VAO);
+        glBindVertexArray(VAO);
 //        glDrawArrays(GL_TRIANGLES, 0, 36);
 
 
